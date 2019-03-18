@@ -1,0 +1,11 @@
+body {
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-size: 30px;
+}
+.button {
+    position:absolute;
+    margin-top:38%;
+    left:45%;
+}

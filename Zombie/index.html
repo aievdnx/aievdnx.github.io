@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<link href="css\style.css" rel="stylesheet" type="text/css">
+<html>
+
+<body>
+
+    <img id="zombie" src="images\zombie.png" onclick="clicksZombie(), changeImage()" height="100px" width="100px"
+        style="position: absolute">
+
+    <audio id="music">
+        <source src="src/explosion.mp3" type="audio/mpeg">
+    </audio>
+
+    <script type="text/javascript">
+        let music = document.getElementById("music");
+        function playMusic() {
+            music.play();
+        }
+        (function () {
+            setInterval(zombieMovement, 2000);
+        })();
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        function zombieMovement() {
+            document.getElementById('zombie').src = "images/zombie.png";
+            let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+            width = width - 200
+            randomLeft = Math.random() * width;
+            height = height - 200
+            randomTop = Math.random() * height;
+            document.getElementById("zombie").style.left = randomLeft + "px";
+            document.getElementById("zombie").style.top = randomTop + "px";
+            console.log("\"" + randomLeft + "px\"");
+            console.log(randomTop + "px");
+        }
+        let clicks = 0;
+        function clicksZombie() {
+            clicks++;
+            document.getElementById("clicks").innerHTML = clicks;
+            playMusic();
+        }
+        function changeImage() {
+            let image = document.getElementById('zombie');
+            if (image.src.match("zombie")) {
+                image.src = "images/explosion.gif";
+            } else {
+                image.src = "images/zombie.png";
+            }
+        }
+        function restartGame() {
+            window.location.reload();
+        }
+
+        function respawnLocation2() {
+            w = random();
+            h = random();
+            document.getElementById("zombie").style.left = w + "%";
+            document.getElementById("zombie").style.top = h + "%";
+        }
+
+        function random() {
+            return Math.random() * (80 - 20) + 20;
+        }
+
+        respawnLocation2();
+    </script>
+    <p>Number of kills: <span id="clicks">0</span></p>
+    <div class="button">
+        <input type="button" value="Restart Game" onClick="window.location.reload()">
+    </div>
+</body>
+
+</html>
