@@ -7,6 +7,9 @@
     <img id="zombie" src="images\zombie.png" onclick="clicksZombie(), changeImage()" height="100px" width="100px"
         style="position: absolute">
 
+    <img id="zombie2" src="images\zombie.png" onclick="clicksZombie(), changeImage2()" height="100px" width="100px"
+        style="position: absolute">
+
     <audio id="music">
         <source src="src/explosion.mp3" type="audio/mpeg">
     </audio>
@@ -18,12 +21,8 @@
         }
         (function () {
             setInterval(zombieMovement, 2000);
+            setInterval(zombieMovement2, 2000);
         })();
-        function getRandomInt(min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
         function zombieMovement() {
             document.getElementById('zombie').src = "images/zombie.png";
             let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -34,6 +33,19 @@
             randomTop = Math.random() * height;
             document.getElementById("zombie").style.left = randomLeft + "px";
             document.getElementById("zombie").style.top = randomTop + "px";
+            console.log("\"" + randomLeft + "px\"");
+            console.log(randomTop + "px");
+        }
+        function zombieMovement2() {
+            document.getElementById('zombie2').src = "images/zombie.png";
+            let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+            width = width - 200
+            randomLeft = Math.random() * width;
+            height = height - 200
+            randomTop = Math.random() * height;
+            document.getElementById("zombie2").style.left = randomLeft + "px";
+            document.getElementById("zombie2").style.top = randomTop + "px";
             console.log("\"" + randomLeft + "px\"");
             console.log(randomTop + "px");
         }
@@ -51,21 +63,33 @@
                 image.src = "images/zombie.png";
             }
         }
+        function changeImage2() {
+            let image = document.getElementById('zombie2');
+            if (image.src.match("zombie")) {
+                image.src = "images/explosion.gif";
+            } else {
+                image.src = "images/zombie.png";
+            }
+        }
         function restartGame() {
             window.location.reload();
         }
-
-        function respawnLocation2() {
+        function respawnLocation() {
             w = random();
             h = random();
             document.getElementById("zombie").style.left = w + "%";
             document.getElementById("zombie").style.top = h + "%";
         }
-
+        function respawnLocation2() {
+            w = random();
+            h = random();
+            document.getElementById("zombie2").style.left = w + "%";
+            document.getElementById("zombie2").style.top = h + "%";
+        }
         function random() {
             return Math.random() * (80 - 20) + 20;
         }
-
+        respawnLocation();
         respawnLocation2();
     </script>
     <p>Number of kills: <span id="clicks">0</span></p>
