@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<script>
+function generateButtons(number) {
+let alpha = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+for (let i = 0; i < number; i++) {
+    let button = document.createElement("BUTTON");
+    button.innerHTML = alpha[i];
+    document.write("&nbsp;");
+    button.onclick = function() {console.log("Button " + alpha[i] + " was clicked!")};
+    document.body.appendChild(button);
+    }
+}
+generateButtons(3)
+</script>
+</body>
+</html>
